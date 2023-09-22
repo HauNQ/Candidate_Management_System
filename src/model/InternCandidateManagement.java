@@ -35,20 +35,13 @@ public class InternCandidateManagement {
         
         try {
             Validation val = new Validation();
-            Candidate c = new Candidate();
-            c = c.createCandidate(list);
             Intern_Candidate interC = new Intern_Candidate();
-            interC.setId(c.getId());
-            interC.setFirstName(c.getFirstName());
-            interC.setLastName(c.getLastName());
-            interC.setAddress(c.getAddress());
-            interC.setBirthDate(c.getBirthDate());
-            interC.setType(c.getType());
-            interC.setEmail(c.getEmail());
-            interC.setPhone(c.getPhone());
+            new Candidate().createCandidate((Candidate)interC, list);
+            
+            interC.setType(2);
             interC.setMajor(val.getString("Enter major: "));
             interC.setSemester(val.getString("Enter semester: "));
-            interC.setUniversity(val.getString("Enter univeristy: "));
+            interC.setUniversity(val.getString("Enter univeristy: ")); 
             
             list.add((Candidate)interC);
             
@@ -71,7 +64,7 @@ public class InternCandidateManagement {
          System.out.println("===========Intern CANDIDATE============");
          if(!list.isEmpty() && from >=0 && to > 0){
               for(int i = from; i < to; i++){
-                  System.out.println(list.get(i));
+                  System.out.println((Intern_Candidate)list.get(i));
               }
          }
     }

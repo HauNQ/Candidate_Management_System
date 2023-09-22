@@ -47,8 +47,8 @@ public class Fresher_Candidate  extends Candidate{
         this.university = university;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Fresher_Candidate{" + super.toString() +"graduatedTime=" + graduatedTime + ", rankOfGraduation=" + rankOfGraduation + ", university=" + university + '}';
-//    }
+    @Override
+    public String toString() {
+        return super.toString() +" | " + graduatedTime + " | " + rankOfGraduation + " | " + university ;
+    }
 }

@@ -12,8 +12,9 @@ import java.util.ArrayList;
  * @author Nguyen Quang Hau
  */
 public class ExpCandidateManagement {
-    private ArrayList<Candidate>  list;
-    
+
+    private ArrayList<Candidate> list;
+
     public ExpCandidateManagement() {
         list = new ArrayList<>();
     }
@@ -30,56 +31,42 @@ public class ExpCandidateManagement {
         return list.size();
     }
 
-
-    
-    public boolean add(){
-        
+    public boolean add() {
         try {
-            Validation val = new Validation();
-            Candidate c = new Candidate();
-            c = c.createCandidate(list);
             Experience_Candidate exC = new Experience_Candidate();
-            exC.setId(c.getId());
-            exC.setFirstName(c.getFirstName());
-            exC.setLastName(c.getLastName());
-            exC.setAddress(c.getAddress());
-            exC.setBirthDate(c.getBirthDate());
-            exC.setType(c.getType());
-            exC.setEmail(c.getEmail());
-            exC.setPhone(c.getPhone());
+            new Candidate().createCandidate((Candidate) exC,list);
+            Validation val = new Validation();
+            exC.setType(0);
             exC.setExplnYear(val.getIntData("Enter year of experience: ", 0, 100));
             exC.setProSkill(val.getString("Enter profesional skills: "));
 
-            list.add((Candidate)exC);
+            list.add((Candidate) exC);
         } catch (Exception e) {
             return false;
         }
-        
+
         return true;
     }
 
-    
-    
-    
-    public void nameDisplay(){
+    public void nameDisplay() {
         System.out.println("===========EXPERIENCE CANDIDATE============");
         for (Candidate candidate : list) {
-            System.out.println(candidate.getFirstName()+" "+candidate.getLastName());
+            System.out.println(candidate.getFirstName() + " " + candidate.getLastName());
         }
     }
-    
-     public void display(int from, int to){
-         System.out.println("===========Intern CANDIDATE============");
-         if(!list.isEmpty() && from >=0 && to > 0){
-              for(int i = from; i < to; i++){
-                  System.out.println(list.get(i));
-              }
-         }
+
+    public void display(int from, int to) {
+        System.out.println("===========EXPERIENCE CANDIDATE============");
+        if (!list.isEmpty() && from >= 0 && to > 0) {
+            for (int i = from; i < to; i++) {
+                System.out.println((Experience_Candidate)list.get(i));
+            }
+        }
     }
-     
-     public void searchByName(){
-         Validation val = new Validation();
-         String name = val.getString("Enter searched Name: ");
-         new Candidate().search(list, name);
-     }
+
+    public void searchByName() {
+        Validation val = new Validation();
+        String name = val.getString("Enter searched Name: ");
+        new Candidate().search(list, name);
+    }
 }

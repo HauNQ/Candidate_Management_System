@@ -6,7 +6,6 @@ package model;
 
 import common.Validation;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -101,39 +100,58 @@ public class Candidate {
         this.type = type;
     }
 
-    protected Candidate createCandidate(ArrayList<Candidate> list) {
+//    protected Candidate createCandidate(ArrayList<Candidate> list) {
+//        Validation val = new Validation();
+//        Candidate newCandidate = null;
+//
+//        String newId = null;
+//        do {
+//            newId = val.getString("Enter id: ");
+//        } while (val.idIsExisting(list, newId));
+//
+//        String newFirstName = val.getString("Enter first name: ");
+//        String newLastName = val.getString("Enter last name: ");
+//        int newBirthDate = val.getIntData("Enter birth year:", 1900, 2023);
+//        String newAddress = val.getString("Enter address: ");
+//        String newPhone = val.getString("Enter the phone number", "[0-9]{10,}");
+//        String newEmail = val.getString("Enter an email: ", "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
+//
+//        newCandidate = new Candidate(newId, newFirstName, newLastName, newBirthDate, newAddress, newPhone, newEmail, -1);
+//
+//        return newCandidate;
+//    }
+    protected void createCandidate(Candidate c, ArrayList<Candidate> list) {
         Validation val = new Validation();
-        Candidate newCandidate = null;
 
-        String newId = null;
-        do {
-            newId = val.getString("Enter id: ");
-        } while (val.idIsExisting(list, newId));
+        while (true) {
+            c.setId(val.getString("Enter id: "));
+            if(!val.idIsExisting(list, c.getId())) break;
+            else{
+                System.out.println("Id existed! Try again");
+            }
+        }
 
-        String newFirstName = val.getString("Enter first name: ");
-        String newLastName = val.getString("Enter last name: ");
-        int newBirthDate = val.getIntData("Enter birth year:", 1900, 2023);
-        String newAddress = val.getString("Enter address: ");
-        String newPhone = val.getString("Enter the phone number", "[0-9]{10,}");
-        String newEmail = val.getString("Enter an email: ", "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
-        int newType = val.getIntData("-------Type------\n0. Experience.\n1. Fresher.\n2. Intern. \nEnter your selection: ", 0, 2);
-
-        newCandidate = new Candidate(newId, newFirstName, newLastName, newBirthDate, newAddress, newPhone, newEmail, newType);
-
-        return newCandidate;
+        c.setFirstName(val.getString("Enter first name: "));
+        c.setLastName(val.getString("Enter last name: "));
+        c.setBirthDate(val.getIntData("Enter birth year:", 1900, 2023));
+        c.setAddress(val.getString("Enter address: "));
+        c.setPhone(val.getString("Enter the phone number", "[0-9]{10,}"));
+        c.setEmail(val.getString("Enter an email: ", "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"));
     }
 
     protected void search(ArrayList<Candidate> list, String name) {
         for (Candidate candidate : list) {
             if (candidate.getFirstName().contains(name) || candidate.getLastName().contains(name)) {
                 System.out.println(candidate);
+                return;
             }
         }
+        System.out.println("Not Found");
     }
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " | " + birthDate + " | " + address + " | " + phone + " | " + email;
+        return firstName + " | " + lastName + " | " + birthDate + " | " + address + " | " + phone + " | " + email + " | " + type;
     }
 
 }

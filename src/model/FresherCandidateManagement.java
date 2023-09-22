@@ -37,23 +37,14 @@ public class FresherCandidateManagement {
         
         try {
             Validation val = new Validation();
-            Candidate c = new Candidate();
-            c = c.createCandidate(list);
             Fresher_Candidate fresherC = new Fresher_Candidate();
-            fresherC.setId(c.getId());
-            fresherC.setFirstName(c.getFirstName());
-            fresherC.setLastName(c.getLastName());
-            fresherC.setAddress(c.getAddress());
-            fresherC.setBirthDate(c.getBirthDate());
-            fresherC.setType(c.getType());
-            fresherC.setEmail(c.getEmail());
-            fresherC.setPhone(c.getPhone());
+            new Candidate().createCandidate((Candidate)fresherC, list);
+
+            fresherC.setType(1);
             fresherC.setGraduatedTime(val.getIntData("Enter graduated time: ", 1900, 2023));
             fresherC.setUniversity(val.getString("Enter univeristy: "));
-            
             int  intRank = val.getIntData("-----Rank-----\n1. Excellence\n2. Good\n3. Fair\n4. Poor\nEnter rank: ", 1, 4);
             String rank = "";
-            
             if(intRank == 1) rank = "Excellence";
             else if(intRank == 2) rank = "Good";
             else if(intRank == 3) rank = "Fair";
@@ -83,7 +74,7 @@ public class FresherCandidateManagement {
          System.out.println("===========Fresher CANDIDATE============");
          if(!list.isEmpty() && from >=0 && to > 0){
               for(int i = from; i < to; i++){
-                  System.out.println(list.get(i));
+                  System.out.println((Fresher_Candidate)list.get(i));
               }
          }
     }

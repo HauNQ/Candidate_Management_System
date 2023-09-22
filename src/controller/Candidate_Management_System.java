@@ -4,7 +4,6 @@
  */
 package controller;
 
-import java.awt.BorderLayout;
 import model.ExpCandidateManagement;
 import model.FresherCandidateManagement;
 import model.InternCandidateManagement;
@@ -17,7 +16,7 @@ import view.Menu;
 public class Candidate_Management_System extends Menu<String> {
 
     private static String title = "CANDIDATE MANAGEMENT SYSTEM";
-    private static String options[] = {"Experience", "Fresher", "Internship", "Searching"};
+    private static String options[] = {"Experience", "Fresher", "Internship", "Searching","Exit"};
     private ExpCandidateManagement exList;
     private FresherCandidateManagement freList;
     private InternCandidateManagement intList;

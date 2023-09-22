@@ -34,13 +34,12 @@ public abstract class Menu<T> {
         for (int i = 0; i < options.size(); i++) {
             System.out.println((i + 1) + ". " + options.get(i));
         }
-        System.out.println((options.size() + 1) + ". Exit");
         System.out.println("-----------------------");
     }
 
     public int getOption() {
         display();
-        return val.getIntData("Enter your selection", 1, options.size() + 1);
+        return val.getIntData("Enter your selection: ", 1, options.size() + 1);
     }
 
     public abstract void excute(int n);
@@ -48,7 +47,7 @@ public abstract class Menu<T> {
     public void run() {
         while (true) {
             int n = getOption();
-             if (n > options.size()) {
+             if (n >= options.size()) {
                  System.out.println("GoodBye");
                 break;
             }

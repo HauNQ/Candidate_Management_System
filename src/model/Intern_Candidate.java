@@ -47,10 +47,10 @@ public class Intern_Candidate extends Candidate{
         this.university = university;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Intern_Candidate{" + super.toString() +"major=" + major + ", semester=" + semester + ", university=" + university + '}';
-//    }
+    @Override
+    public String toString() {
+        return super.toString() +" | " + major + " | " + semester + " | " + university ;
+    }
     
     
 }

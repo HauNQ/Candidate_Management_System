@@ -37,10 +37,10 @@ public class Experience_Candidate extends Candidate{
         this.proSkill = proSkill;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Experience_Candidate{" + super.toString() +"ExplnYear=" + ExplnYear + ", proSkill=" + proSkill + '}';
-//    }
-//    
+    @Override
+    public String toString() {
+        return  super.toString() + " | "+ExplnYear + " | "+proSkill;
+    }
+    
     
 }
